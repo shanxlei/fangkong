@@ -9,7 +9,6 @@
      <el-table
         style="width: 100%"
         :data="tableData"
-        class="content"
         >
         <el-table-column
           prop="date"
@@ -131,6 +130,7 @@
               size="mini"
               icon="el-icon-edit"
               :type="scope.row.type | statusFilter"
+              :disabled="scope.row.type | typeFilter"
               @click="handleEdit(scope.$index, scope.row)"
               >修改</el-button>
           </template>
@@ -154,8 +154,8 @@ export default {
     },
     typeFilter(type) {
       const typeMap = {
-        true: '',
-        false: 'disabled',
+        true: false,
+        false: true,
       }
       return typeMap[type]
     }
@@ -234,17 +234,17 @@ export default {
 }
 </script>
 <style>
-.content {
-  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  padding: 30px;
-}
 .tabletitle {
   text-align: center;
 }
 .tabletitle h3 {
   font-size: 20px;
   color: #384b73;
+}
+.table{
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 10px;
 }
 .table .el-table thead {
   color: #323232;
@@ -263,7 +263,9 @@ export default {
 .table .primary{
   color: #409EFF;
 }
-.el-table--border, .el-table--group{
-  border: none;
+.content {
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  padding: 30px;
 }
 </style>
