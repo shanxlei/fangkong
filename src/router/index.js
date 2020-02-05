@@ -42,10 +42,10 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
-    path: '/form',
+    path: '/',
     component: Layout,
+    redirect: '/index',
     children: [
       {
         path: 'index',
@@ -67,15 +67,14 @@ export const constantRoutes = [
       },
     ]
   },
-
   {
-    path: '/',
+    path: '/contacts',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/contacts',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
+      path: 'contacts',
+      name: 'contacts',
+      component: () => import('@/views/contacts/index'),
       meta: { title: '通讯录', icon: 'dashboard' }
     }]
   },
@@ -92,6 +91,33 @@ export const constantRoutes = [
       meta: { title: '统计图表', icon: 'dashboard' }
     }]
   },
+
+  {
+    path: '/person',
+    component: Layout,
+    redirect: '/person',
+    hidden: true,
+    children: [{
+      path: 'person',
+      name: 'person',
+      component: () => import('@/views/person/index'),
+      meta: { title: '个人中心'}
+    }]
+  },
+  {
+    path: '/password',
+    component: Layout,
+    redirect: '/password',
+    hidden: true,
+    children: [{
+      path: 'password',
+      name: 'password',
+      component: () => import('@/views/updatePassword/index'),
+      meta: { title: '密码修改' }
+    }]
+  },
+
+
 
   
 

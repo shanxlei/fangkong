@@ -4,7 +4,7 @@ import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-
+Vue.use(ElementUI)
 
 import '@/styles/index.scss' // global css
 
@@ -22,8 +22,23 @@ axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('to
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 axios.interceptors.response.use(function (response) {
-  // 对响应数据做点什么
-  return response;
+ 
+  // 200 : 成功
+  // 400：失败  ，msg内容就是错误信息
+  // 401：登陆超时，跳转到登陆页面
+  if (response.data.code == 400) {
+    Vue.$message.error(response.data.msg);
+  }
+  if (response.data.code == 401) {
+    window.localStorage.removeItem('token')
+    store.dispatch('user/logout')
+    router.push(`/login`)
+  }
+  if (response.data.code == 200) {
+    return response;
+  }
+
+ 
 }, function (error) {
   // 对响应错误做点什么
   return Promise.reject(error);
@@ -45,7 +60,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
- Vue.use(ElementUI)
+ 
 
 Vue.config.productionTip = false
 
