@@ -17,6 +17,18 @@ import '@/permission' // permission control
 
 import axios from 'axios'
 
+axios.defaults.baseURL = 'http://www.nihao.com';
+axios.defaults.headers.common['Authorization'] = window.localStorage.getItem('token')|| '';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+axios.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  return response;
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
+
 Vue.prototype.$axios= axios;
 
 /**

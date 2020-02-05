@@ -108,6 +108,13 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+
+          // this.$axios.get('api/nihao',this.loginForm).then(res=>{
+          //   console.log(res,'re')
+          // })
+
+
+
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
