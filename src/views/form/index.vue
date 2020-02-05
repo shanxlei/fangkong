@@ -110,6 +110,40 @@
         </el-button>
       </el-form-item>
     </el-form>
+
+    <!-- 弹窗 -->
+    <el-dialog
+      title="XX县应对新型冠状病毒感染肺炎疫情数据填报表（2020年2月5日）"
+      :visible.sync="centerDialogVisible"
+      width="52.8%"
+      center
+    >
+      <div>
+        <p>填报单位:XXX县</p>
+        <el-table :data="tableData" stripe style="width: 100%">
+          <el-table-column label="确诊人数">
+            <el-table-column prop="province" label="新增" width="120"></el-table-column>
+            <el-table-column prop="city" label="累计" width="120"></el-table-column>
+          </el-table-column>
+          <el-table-column label="疑似人数">
+            <el-table-column prop="province" label="新增" width="120"></el-table-column>
+            <el-table-column prop="city" label="累计" width="120"></el-table-column>
+          </el-table-column>
+          <el-table-column label="治愈人数">
+            <el-table-column prop="province" label="新增" width="120"></el-table-column>
+            <el-table-column prop="city" label="累计" width="120"></el-table-column>
+          </el-table-column>
+          <el-table-column label="死亡人数">
+            <el-table-column prop="province" label="新增" width="120"></el-table-column>
+            <el-table-column prop="city" label="累计" width="120"></el-table-column>
+          </el-table-column>
+        </el-table>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="centerDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+        </span>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -129,12 +163,72 @@ export default {
         type: [],
         resource: "",
         desc: ""
-      }
+      },
+      centerDialogVisible: false,
+      tableData: [
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-08",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-06",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        },
+        {
+          date: "2016-05-07",
+          name: "王小虎",
+          province: "上海",
+          city: "普陀区",
+          address: "上海市普陀区金沙江路 1518 弄",
+          zip: 200333
+        }
+      ]
     };
   },
   methods: {
     onSubmit() {
       this.$message("submit!");
+      this.centerDialogVisible = true;
     },
     onCancel() {
       this.$message({
@@ -190,9 +284,19 @@ ul.icon-list {
   margin-bottom: -1px;
   padding: 30px;
 }
-.btn_content{
+.btn_content {
   text-align: center;
 }
+.dialog-footer {
+  text-align: center;
+  display: block;
+  margin-top: 50px;
+}
+.el-dialog{
+  width: 100%;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .content {
     padding: 0px;
@@ -208,16 +312,16 @@ ul.icon-list {
     margin-bottom: -1px;
     padding: 5px;
   }
-  .app-container{
+  .app-container {
     padding: 10px;
   }
-  .el-col-8{
+  .el-col-8 {
     width: 100%;
   }
-  .el-col-2{
-     width: 100%;
+  .el-col-2 {
+    width: 100%;
   }
-  .el-col-11{
+  .el-col-11 {
     width: 100%;
   }
   .content {
@@ -230,6 +334,5 @@ ul.icon-list {
     margin-block-end: 0em;
   }
 }
-
 </style>
 

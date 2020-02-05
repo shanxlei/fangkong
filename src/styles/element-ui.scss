@@ -47,3 +47,9 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+
+@media (max-width: 768px) {
+  .el-dialog{
+    width: 95% !important;
+  }
+}
